@@ -79,9 +79,11 @@ const DIVcrearFormularioCompra = () => (
 
 const crearFormularioCompra = () => ( `<form>
 <div class="form-group">
-<input type="text" class="form-control mb-3 mt-3" placeholder="Nombre completo" id="nombreCompleto" required>
+<label for="nombreCompleto" class="text-black fs-6">Introduzca su nombre completo</label>
+<input type="text" class="form-control mb-3 mt-3" placeholder="ej:     Juan Perez" id="nombreCompleto" required>
 </div>
 <div class="form-group">
+<label for="email" class="text-black fs-6">Introduzca un email valido</label>
 <input type="email" class="form-control" placeholder="ej:     jaime@gmail.com" id="email" required>
 </div>
 <div class="form-check form-switch pt-3">
@@ -156,14 +158,15 @@ function pedidoConfirmado () {
     let carritoBox = document.createElement("div");
     carritoBox.classList.add("clientes-container", "titulo-parrafo");
     carritoBox.innerHTML =  `<div class="clientes-tarjeta ">
-    <h3>¡Gracias ${recuperarStorage("nombreCompleto").toUpperCase()} ! &#129303</h3>
+    <h3>¡Gracias ${recuperarStorage("nombre_usuario").toUpperCase()} ! &#129303</h3>
+    <p class="fs-6 text-secondary pt-1 mb-0">${(recuperarStorage("nombreCompleto").toUpperCase())}</p>
     <p class="fs-5 text-center text-primary">Su pedido fué procesado </p>
     <img class=" clientes-tarjeta rounded bg-black bg-opacity-75 m-1"
     src="./multimedia/logo-empresa-blanco.png" id="imagenForm">
-    <p class="fs-5">Su total es de AR$${parseInt(recuperarStorage("precioFinal"))} </p>
+    <p class="fs-5 fw-normal">Su total es de AR$${parseInt(recuperarStorage("precioFinal"))} </p>
     <p>Factura y detalles enviados: <br><span class="fs-6"
     >${recuperarStorage("email")}</span></p>
-    <p class="fs-6 text-center text-decoration-underline m-2">Quiero seguir comprando </p>
+    <p class="fs-6 fw-normal text-center text-decoration-underline m-2">Quiero seguir comprando </p>
     <div id="borrar_datos" type="button"
     class="btn btn-warning fw-bold m-2" required>Comprar</div>
     </div>`;
