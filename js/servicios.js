@@ -16,17 +16,16 @@ function getDolar() {
         //status
         $("#upd").children("span").text(upd.split("T", 1));
         $("#dolar").text(dolar);
+        //btn Calcular habilitado
+        $("#calcular").removeAttr("disabled", "disabled");
     },
     error: () => {
-            //oculto btn Calcular
-            $('[data-id="errorBtn"]').hide();
-            //creo msj y btn Error dentro de menu eleccion servicios
-            $('[data-id="errorMsj"]').prepend(
-            `<div>
-                <p class="fs-4">Error en datos dolar</p>
-                <div type="button" class="clientes-container btn btn-danger mb-4 fs-5 fw-bold" onclick="btnError()">Recargar</div>
-            </div>`
-            );
+        $("#calcular").text("Error data");
+        //creo msj y btn Error dentro de menu eleccion servicios
+        $('[data-id="errorMsj"]').html( `<div class="container-fluid">
+            <p class="fs-4 text-end">Error en datos dolar</p>
+            <div type="button" class="clientes-container btn btn-danger fs-5 fw-bold" onclick="btnError()">Recargar</div>
+        </div>`);
         },
     });
 }
@@ -37,7 +36,7 @@ function btnError() {
 }
 
 const crearDivSelectores = () => ( `<form>
-<div class="clientes-tarjeta clientes-tarjeta__titulo">
+<div class="clientes-tarjeta clientes-tarjeta__titulo" data-id="errorMsj">
 <h4> Elegí tu Aventura</h4>
 <select id="paquetes" class="text-black m-2">
 <option id="precioP1" value="">Paquete básico &#128675 Usd$15</></option>
@@ -52,12 +51,10 @@ const crearDivSelectores = () => ( `<form>
 <option value="8">8 Personas</option>
 </select>
 <button type="button" id="calcular" data-id="errorBtn" class="btn btn-outline-primary 
-m-3" >Calcular</button>
-<div class="m-0">
-    <p data-id="errorMsj" class="fs-5 text-primary text-opacity-75 
-    text-start ps-4">Precio final AR$ <span id="resultado">0</span>
-    </p>
-</div>
+m-3" disabled="disabled">Calcular</button>
+<p  class="fs-5 text-primary text-opacity-75 
+text-start ps-4">Precio final AR$ <span id="resultado">0</span>
+</p>
 </form>
 <div>
     <p>Nuestros precios son calculados por el dolar oficial sin impuestos</p>
