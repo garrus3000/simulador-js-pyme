@@ -9,4 +9,6 @@ CSS y Boostrap.
 SEO.
 JQuery 3.6.0 min.
 
+Mobile first.
+
 AJAX para tomar valor USD oficial y pasarlo a ARS.
