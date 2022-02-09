@@ -39,12 +39,14 @@ const crearDivSelectores = () => ( `<form>
 <div class="clientes-tarjeta clientes-tarjeta__titulo" data-id="errorMsj">
 <h4> Elegí tu Aventura</h4>
 <select id="paquetes" class="text-black m-2">
+<option value="0" disabled selected>Elige un servicio</option>
 <option id="precioP1" value="">Paquete básico &#128675 Usd$15</></option>
 <option id="precioP2" value="">Paquete completo &#128010 Usd$30</option>
 <option id="precioP3" value="">Paquete Ranger &#128170 Usd$35</option>
 </select>
 <h4 class="mt-3">Somos un grupo</h4>
 <select id="cantidad" class="text-black m-2">
+<option value="0" disabled selected>Elige una cantidad</option>
 <option value="1">1 Persona</option>
 <option value="2">2 Personas</option>
 <option value="4">4 Personas </option>
@@ -129,7 +131,7 @@ function elegirServicio(){
         if ( (nombreCompleto !== "")
             && (checkbox === true)
             && (email && regex.test(email))
-            && (recuperarStorage("precioFinal") )) {
+            && (recuperarStorage("precioFinal") )!= "0" ) {
                 pedidoConfirmado();
                 this.removeEventListener("click", (btnAceptar));
         } else {
@@ -137,6 +139,15 @@ function elegirServicio(){
         }
     });
     addProducts();
+}
+
+//else btnAceptar
+function faltanDatos(){
+    $("#faltanDatos").slideDown(300).delay(300)
+    .fadeOut(300).fadeIn(300).fadeOut(300, () => {
+        $("#faltanDatos").fadeIn(300)
+        .delay(300).slideUp(300);
+    })
 }
 
 //selectores y btn Calcular
@@ -152,46 +163,42 @@ function addProducts() {
         guardarStorage("precioFinal",  total);
     });
 }
+
+const CarritoBoxMensaje = () => ( `<div class="clientes-tarjeta ">
+<h3>¡Gracias ${recuperarStorage("nombre_usuario").toUpperCase()} ! &#129303</h3>
+<p class="fs-6 text-secondary pt-1 mb-0">${(recuperarStorage("nombreCompleto").toUpperCase())}</p>
+<p class="fs-5 text-center text-primary">Su pedido fué procesado </p>
+<img class=" clientes-tarjeta rounded bg-black bg-opacity-75 m-1"
+src="./multimedia/logo-empresa-blanco.png" id="imagenForm">
+<p class="fs-5 fw-normal">Su total es de AR$${parseInt(recuperarStorage("precioFinal"))} </p>
+<p>Factura y detalles enviados: <br><span class="fs-6"
+>${recuperarStorage("email")}</span></p>
+<p class="fs-6 fw-normal text-center text-decoration-underline m-2">Quiero seguir comprando </p>
+<div id="borrar_datos" type="button"
+class="btn btn-warning fw-bold m-2" required>Comprar</div>
+</div>`);
+
 //if btnAceptar
 function pedidoConfirmado () {
     let carritoContainer = document.getElementById("pedidoConfirmado");
     let carritoBox = document.createElement("div");
     carritoBox.classList.add("clientes-container", "titulo-parrafo");
-    carritoBox.innerHTML =  `<div class="clientes-tarjeta ">
-    <h3>¡Gracias ${recuperarStorage("nombre_usuario").toUpperCase()} ! &#129303</h3>
-    <p class="fs-6 text-secondary pt-1 mb-0">${(recuperarStorage("nombreCompleto").toUpperCase())}</p>
-    <p class="fs-5 text-center text-primary">Su pedido fué procesado </p>
-    <img class=" clientes-tarjeta rounded bg-black bg-opacity-75 m-1"
-    src="./multimedia/logo-empresa-blanco.png" id="imagenForm">
-    <p class="fs-5 fw-normal">Su total es de AR$${parseInt(recuperarStorage("precioFinal"))} </p>
-    <p>Factura y detalles enviados: <br><span class="fs-6"
-    >${recuperarStorage("email")}</span></p>
-    <p class="fs-6 fw-normal text-center text-decoration-underline m-2">Quiero seguir comprando </p>
-    <div id="borrar_datos" type="button"
-    class="btn btn-warning fw-bold m-2" required>Comprar</div>
-    </div>`;
+    carritoBox.innerHTML =  CarritoBoxMensaje();
     //guardo varible para function checkPedidoStorage
     let pedidoAnterior = true;
     guardarStorage("pedidoAnterior", pedidoAnterior);
-
     //oculto selectores y formulario
-    $("#app").children().parent().slideUp(1900)
+    $("#app").children().parent().slideUp(1900);
     //muestro pedido confirmado
-    $(carritoContainer).append(carritoBox).hide().slideDown(2000)
+    $(carritoContainer).append(carritoBox).hide().slideDown(1500, () => {
+        centerThis = document.getElementById("servicios")
+        .scrollIntoView({block: "center", behavior: "smooth"});
+    });
     //btn borra todos los datos y refresh
     $("#borrar_datos").click( ()=>{
         localStorage.removeItem("nombre_usuario");
         localStorage.removeItem("pedidoAnterior");
         localStorage.removeItem("precioFinal");
         location.reload();
-    })
-}
-
-//else btnAceptar
-function faltanDatos(){
-    $("#faltanDatos").slideDown(300).delay(300)
-    .fadeOut(300).fadeIn(300).fadeOut(300, () => {
-        $("#faltanDatos").fadeIn(300)
-        .delay(300).slideUp(300);
     })
 }
