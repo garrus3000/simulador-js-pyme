@@ -170,12 +170,12 @@ const CarritoBoxMensaje = () => ( `<div class="clientes-tarjeta ">
 <p class="fs-5 text-center text-primary">Su pedido fué procesado </p>
 <img class=" clientes-tarjeta rounded bg-black bg-opacity-75 m-1"
 src="./multimedia/logo-empresa-blanco.png" id="imagenForm">
-<p class="fs-5 fw-normal">Su total es de AR$${parseInt(recuperarStorage("precioFinal"))} </p>
+<p class="fs-5 fw-normal mt-2">Su total es de AR$${parseInt(recuperarStorage("precioFinal"))} </p>
 <p>Factura y detalles enviados: <br><span class="fs-6"
 >${recuperarStorage("email")}</span></p>
-<p class="fs-6 fw-normal text-center text-decoration-underline m-2">Quiero seguir comprando </p>
+<p class="fs-6 fw-normal text-center text-decoration-underline m-2">Recuerde revisar su email</p>
 <div id="borrar_datos" type="button"
-class="btn btn-warning fw-bold m-2" required>Comprar</div>
+class="btn btn-warning fw-bold m-2" required>Aceptar</div>
 </div>`);
 
 //if btnAceptar
