@@ -1,4 +1,4 @@
-const svgLightButton = () =>(
+const svgLightButton = () =>
     `<svg
     xmlns="http://www.w3.org/2000/svg"
     width="23"
@@ -19,25 +19,24 @@ const svgLightButton = () =>(
     <line x1="21" y1="12" x2="23" y2="12" />
     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>`);
+    </svg>`;
 
-const svgDarkButton = () => (
+const svgDarkButton = () =>
     `<svg xmlns="http://www.w3.org/2000/svg" 
     width="24" height="24"
     fill="currentColor" class="bi bi-moon-fill" viewBox="0 0 16 16">
     <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-    </svg>`
-);
+    </svg>`;
 
 // div con btn de modos index.hmtl linea 28
 // btn modo dark id: theme_dark
 // btn modo light id: theme_light
 
-$( document ).ready(function themeLight(){
+$(document).ready(function themeLight() {
     //btn modo claro
-    $("#theme_light").html( svgLightButton );
+    $("#theme_light").html(svgLightButton);
     $("#theme_light").append(` <span class="text-black">𝑳𝒊𝒈𝒉𝒕</span> `);
-    $("#theme_light").click( () => {
+    $("#theme_light").click(() => {
         $("#theme_light").toggle();
         $("#theme_dark").toggle();
         $("body").removeClass("bg-black");
@@ -47,25 +46,25 @@ $( document ).ready(function themeLight(){
     themeDark();
 });
 
-function themeDark (){
+function themeDark() {
     //oculto btn modo claro
     $("#theme_light").toggle();
-    $("#theme_dark").html( svgDarkButton )
+    $("#theme_dark").html(svgDarkButton);
     $("#theme_dark ").append(` <span class="text-white">𝑫𝒂𝒓𝒌</span> `);
     // btn modo oscuro
-    $('#theme_dark').click( () =>{
-    $("#theme_dark").toggle();
-    $("#theme_light").toggle();
-    $("body").addClass("bg-black");
-    $("body").css("transition", "300ms");
-    guardarStorage("theme_dark", true)
+    $("#theme_dark").click(() => {
+        $("#theme_dark").toggle();
+        $("#theme_light").toggle();
+        $("body").addClass("bg-black");
+        $("body").css("transition", "300ms");
+        guardarStorage("theme_dark", true);
     });
     //theme por preferencia
-    if (recuperarStorage("theme_dark") === true ) {
-            $("body").toggleClass("bg-black");
-            $("#theme_light").toggle();
-            $("#theme_dark").toggle();
-    }else {
+    if (recuperarStorage("theme_dark") === true) {
+        $("body").toggleClass("bg-black");
+        $("#theme_light").toggle();
+        $("#theme_dark").toggle();
+    } else {
         $("body").removeClass("bg-black");
     }
 }

@@ -142,14 +142,14 @@
   color: #e91616;
 }
 
-/*Tarjeta de clientes, ---- SECCION OPINIONES ---- */
-.clientes-container {
+/*Tarjeta de my, ---- SECCION OPINIONES ---- */
+.my-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
-.clientes-container .clientes-tarjeta {
+.my-container .my-tarjeta {
   border-radius: 15px;
   box-shadow: 3px 3px 15px #0d1821;
   margin: 1rem;
@@ -159,19 +159,19 @@
   align-items: center;
   background-color: #ffffff;
 }
-.clientes-container .clientes-tarjeta img {
+.my-container .my-tarjeta img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   margin-bottom: 1rem;
 }
-.clientes-container .clientes-tarjeta__titulo {
+.my-container .my-tarjeta__titulo {
   color: #68c3d4;
   font-size: 1.2rem;
   text-align: center;
   font-weight: 700;
 }
-.clientes-container p {
+.my-container p {
   width: 240px;
   font-size: 0.9rem;
   color: #000000;
