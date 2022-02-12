@@ -126,7 +126,7 @@ function ingresarNombre() {
         app_main.innerHTML = `<h3> BIENVENIDO &#128075; </h3>
                             <p> Para comprar ingrese su nombre </p>
                             <input id="nombreIngresado" type="text" placeholder="Nombre" class="p-1 mb-3
-                                bg-warning fw-bold text-dark border border-danger border-3">`;
+                                 fw-bold text-dark">`;
         //btn
         let app_main_btn = document.createElement("div");
         app_main_btn.innerHTML = `<div id="btnNombre" type="button" class="btn btn-outline-success fw-bold m-2">Confirmar</div>`;
