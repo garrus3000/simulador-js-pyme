@@ -82,16 +82,16 @@ const crearFormularioCompra = `<form>
 </form>`;
 
 const DIVcrearFormularioCompra = `<div class="my-tarjeta my-tarjeta__titulo">
-        <h3> Gracias por elegirnos &#128075; </h3>
-        <div id="form_compra"> ${crearFormularioCompra} </div>
-        <p id="faltanDatos" style="display: none;" class="fs-4 text-danger">FALTAN DATOS<p> 
-        <div>
-            <div type="button" id="confirmar-pedido"
-            class="btn btn-success fw-bold m-2">Aceptar</div>
-            <div type="button" id="cancelar-pedido"
-            class="btn btn-danger fw-bold m-2">Cancelar</div>
-        </div>
-    </div>`;
+<h3> Gracias por elegirnos &#128075; </h3>
+<div id="form_compra"> ${crearFormularioCompra} </div>
+<p id="faltanDatos" style="display: none;" class="fs-4 text-danger">FALTAN DATOS<p> 
+<div>
+    <div type="button" id="confirmar-pedido"
+    class="btn btn-success fw-bold m-2">Aceptar</div>
+    <div type="button" id="cancelar-pedido"
+    class="btn btn-danger fw-bold m-2">Cancelar</div>
+    </div>
+</div>`;
 
 function elegirServicio() {
     const menu_servicios = document.createElement("div");
@@ -130,9 +130,10 @@ function elegirServicio() {
             nombreCompleto !== "" &&
             checkbox === true &&
             email &&
-            regex.test(email) ) {
-            pedidoConfirmado();
-            this.removeEventListener("click", btnAceptar);
+            regex.test(email)
+            && (recuperarStorage("precioFinal")) ) {
+                pedidoConfirmado();
+                this.removeEventListener("click", btnAceptar);
         } else {
             faltanDatos();
         }
@@ -177,9 +178,7 @@ const CarritoBoxMensaje = () => `<div class="my-tarjeta ">
 <p class="fs-5 text-center text-primary">Su pedido fué procesado </p>
 <img class=" my-tarjeta rounded bg-black bg-opacity-75 m-1"
 src="./multimedia/logo-empresa-blanco.png" id="imagenForm">
-<p class="fs-5 fw-normal mt-2">Su total es de AR$${parseInt(
-    recuperarStorage("precioFinal")
-)} </p>
+<p class="fs-5 fw-normal mt-2">Su total es de AR$${parseInt( recuperarStorage("precioFinal"))} </p>
 <p>Factura y detalles enviados: <br><span class="fs-6"
 >${recuperarStorage("email")}</span></p>
 <p class="fs-6 fw-normal text-center text-decoration-underline m-2">Recuerde revisar su email</p>
